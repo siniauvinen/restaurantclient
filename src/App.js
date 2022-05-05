@@ -318,6 +318,8 @@ function App() {
                   ></input>
                   <small id="emailHelp" className="form-text text-muted">
                     ID:n pituus oltava 24 merkkiä.
+                    <br></br><br></br>
+                    5.5.2022 toimiva testi-ID : 5eb3d668b31de5d588f42952
                   </small>
                   <button
                     type="button"
