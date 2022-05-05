@@ -62,7 +62,7 @@ function App() {
     if (queryNumberGET > 0) hae();
   }, [queryNumberGET]);
 
-  /// HAE RAVINTOLA ID PERUSTEELLA ///
+  /// HAE RAVINTOLA ID:n PERUSTEELLA ///
 
   const haeIDperusteella = () => {
     if (id.length !== 24) {
