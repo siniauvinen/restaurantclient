@@ -23,5 +23,5 @@ A list of technologies that were used to create the project.
 
 ### Installation
 ***
-No special requirements. Restaurant Management Tool can be found from 
+No special requirements. Restaurant Management Tool can be found from https://restaurantclient.herokuapp.com/
 

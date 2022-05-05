@@ -257,8 +257,11 @@ function App() {
   return (
     <div>
       <div className="container">
-        <div className="row justify-content-center">
-          <h2>Ravintolat - ylläpitäjän hallintatyökalu</h2>
+      <div className="row justify-content-center">
+          <h2>New Yorkin ravintolat</h2>
+          </div>
+          <div className="row justify-content-center">
+          <h5>Ylläpitäjän hallintatyökalu</h5>
         </div>
         <div className="row justify-content-center">
           <Lataaviesti />
