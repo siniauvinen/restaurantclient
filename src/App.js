@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { usePromiseTracker } from "react-promise-tracker";
-import { trackPromise } from 'react-promise-tracker';
-import { SpinnerCircularFixed } from 'spinners-react';
+import { trackPromise } from "react-promise-tracker";
+import { SpinnerCircularFixed } from "spinners-react";
 import "./App.css";
 
 function App() {
@@ -47,7 +47,9 @@ function App() {
 
   useEffect(() => {
     const hae = async () => {
-      let response = await fetch("https://ravintolaapi.herokuapp.com/api/getall?" + query);
+      let response = await fetch(
+        "https://ravintolaapi.herokuapp.com/api/getall?" + query
+      );
       let responseJSON = await response.json();
       setRavintolat(responseJSON);
 
@@ -75,7 +77,9 @@ function App() {
 
   useEffect(() => {
     const haeID = async () => {
-      let response = await fetch("https://ravintolaapi.herokuapp.com/api/" + id);
+      let response = await fetch(
+        "https://ravintolaapi.herokuapp.com/api/" + id
+      );
       let responseJSON = await response.json();
       setId("");
 
@@ -205,9 +209,12 @@ function App() {
 
   useEffect(() => {
     const poistaRavintolaEffect = async () => {
-      await fetch("https://ravintolaapi.herokuapp.com/api/delete/" + poistaRavintolaID, {
-        method: "DELETE",
-      });
+      await fetch(
+        "https://ravintolaapi.herokuapp.com/api/delete/" + poistaRavintolaID,
+        {
+          method: "DELETE",
+        }
+      );
       setRavintolat(ravintolat.filter((a) => a._id !== poistaRavintolaID));
     };
     if (poistaRavintolaID !== "") poistaRavintolaEffect();
@@ -218,7 +225,9 @@ function App() {
   // Hakee APIsta eri cuisinet
   useEffect(() => {
     const haeRuokatyypit = async () => {
-      let response = await fetch("https://ravintolaapi.herokuapp.com/api/cuisines");
+      let response = await fetch(
+        "https://ravintolaapi.herokuapp.com/api/cuisines"
+      );
       let responseJSON = await response.json();
       setRuokatyypit(responseJSON);
     };
@@ -232,7 +241,9 @@ function App() {
   // Hakee APIsta eri kaupunginosat
   useEffect(() => {
     const haeKaupunginosat = async () => {
-      let response = await fetch("https://ravintolaapi.herokuapp.com/api/boroughs");
+      let response = await fetch(
+        "https://ravintolaapi.herokuapp.com/api/boroughs"
+      );
       let responseJSON = await response.json();
       setKaupunginosat(responseJSON);
     };
@@ -245,177 +256,190 @@ function App() {
 
   return (
     <div>
-      <h2>Ravintolat - ylläpitäjän hallintatyökalu</h2>
-      <Lataaviesti />
-      {showLandingpage && (
-        <>
-          <form className="lomake">
-            <h5>Hae ruokatyypin ja kaupunginosan perusteella</h5>
-            <div className="form-group">
-              <label>Ruokatyyppi</label>
-              <select
-                className="form-control"
-                onChange={(e) => setRuokatyyppi(e.target.value)}
-              >
-                <option></option>
-                {ruokatyyppiData}
-              </select>
-              <label>Kaupunginosa</label>
-              <select
-                className="form-control"
-                onChange={(e) => setKaupunginosa(e.target.value)}
-              >
-                <option></option>
-                {kaupunginosaData}
-              </select>
-              <button
-                type="button"
-                className="btn btn-custom"
-                onClick={() => haeRavintolat()}
-              >
-                Hae
-              </button>
-              <button
-                type="button"
-                className="btn btn-custom"
-                onClick={() => lisaaUusiRavintola()}
-              >
-                Lisää uusi
-              </button>
-            </div>
-          </form>
-          <br></br>
-          <form className="lomake">
-            <div className="form-group">
-              <label><h5>Hae ID:n perusteella</h5></label>
-              <input
-                type="text"
-                className="form-control"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-              ></input>
-              <small id="emailHelp" className="form-text text-muted">
-                ID:n pituus oltava 24 merkkiä.
-              </small>
-              <button
-                type="button"
-                className="btn btn-custom"
-                onClick={() => haeIDperusteella()}
-              >
-                Hae
-              </button>
-            </div>
-          </form>
-          {eiHakutuloksia && <p>Annetuilla hakuehdoilla ei löytynyt dataa</p>}
-          {ravintolat.length > 0 && (
-            <Ravintolalista
-              ravintolat={ravintolat}
-              muokkaaRavintola={muokkaaRavintola}
-              poistaRavintola={poistaRavintola}
-            />
+      <div className="container">
+        <div className="row justify-content-center">
+          <h2>Ravintolat - ylläpitäjän hallintatyökalu</h2>
+        </div>
+        <div className="row justify-content-center">
+          <Lataaviesti />
+        </div>
+        <div className="row justify-content-center">
+          {showLandingpage && (
+            <>
+              <form className="lomake col-lg-5 col-sm-10">
+                <h5>Hae ruokatyypin ja kaupunginosan perusteella</h5>
+                <div className="form-group">
+                  <label>Ruokatyyppi</label>
+                  <select
+                    className="form-control"
+                    onChange={(e) => setRuokatyyppi(e.target.value)}
+                  >
+                    <option></option>
+                    {ruokatyyppiData}
+                  </select>
+                  <label>Kaupunginosa</label>
+                  <select
+                    className="form-control"
+                    onChange={(e) => setKaupunginosa(e.target.value)}
+                  >
+                    <option></option>
+                    {kaupunginosaData}
+                  </select>
+                  <button
+                    type="button"
+                    className="btn btn-custom"
+                    onClick={() => haeRavintolat()}
+                  >
+                    Hae
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-custom"
+                    onClick={() => lisaaUusiRavintola()}
+                  >
+                    Lisää uusi
+                  </button>
+                </div>
+              </form>
+              <br></br>
+              <form className="lomake col-lg-5 col-sm-10">
+                <div className="form-group">
+                  <label>
+                    <h5>Hae ID:n perusteella</h5>
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={id}
+                    onChange={(e) => setId(e.target.value)}
+                  ></input>
+                  <small id="emailHelp" className="form-text text-muted">
+                    ID:n pituus oltava 24 merkkiä.
+                  </small>
+                  <button
+                    type="button"
+                    className="btn btn-custom"
+                    onClick={() => haeIDperusteella()}
+                  >
+                    Hae
+                  </button>
+                </div>
+              </form>
+
+              {eiHakutuloksia && (
+                <p>Annetuilla hakuehdoilla ei löytynyt dataa</p>
+              )}
+              {ravintolat.length > 0 && (
+                <Ravintolalista
+                  ravintolat={ravintolat}
+                  muokkaaRavintola={muokkaaRavintola}
+                  poistaRavintola={poistaRavintola}
+                />
+              )}
+            </>
           )}
-        </>
-      )}
 
-      {showEditpage && (
-        <form className="lomake">
-          <h5>Muokkaa ravintolan tietoja</h5>
-          <div className="form-group">
-            <label>Nimi</label>
-            <input
-              type="text"
-              className="form-control"
-              value={ravintolanNimi}
-              onChange={(e) => setRavintolanNimi(e.target.value)}
-            ></input>
-            <label>Ruokatyyppi</label>
-            <input
-              type="text"
-              className="form-control"
-              value={ruokatyyppi}
-              onChange={(e) => setRuokatyyppi(e.target.value)}
-            ></input>
-            <label>Kaupunginosa</label>
-            <input
-              type="text"
-              className="form-control"
-              value={kaupunginosa}
-              onChange={(e) => setKaupunginosa(e.target.value)}
-            ></input>
-            <label>Osoite</label>
-            <input
-              type="text"
-              className="form-control"
-              value={osoite}
-              onChange={(e) => setOsoite(e.target.value)}
-            ></input>
+          {showEditpage && (
+            <form className="lomake">
+              <h5>Muokkaa ravintolan tietoja</h5>
+              <div className="form-group">
+                <label>Nimi</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={ravintolanNimi}
+                  onChange={(e) => setRavintolanNimi(e.target.value)}
+                ></input>
+                <label>Ruokatyyppi</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={ruokatyyppi}
+                  onChange={(e) => setRuokatyyppi(e.target.value)}
+                ></input>
+                <label>Kaupunginosa</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={kaupunginosa}
+                  onChange={(e) => setKaupunginosa(e.target.value)}
+                ></input>
+                <label>Osoite</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={osoite}
+                  onChange={(e) => setOsoite(e.target.value)}
+                ></input>
 
-            <button
-              className="btn btn-success"
-              type="button"
-              onClick={() => tallennaMuokkaus()}
-            >
-              Tallenna
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => peruutaMuokkaus()}
-            >
-              Peruuta
-            </button>
-          </div>
-        </form>
-      )}
+                <button
+                  className="btn btn-success"
+                  type="button"
+                  onClick={() => tallennaMuokkaus()}
+                >
+                  Tallenna
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => peruutaMuokkaus()}
+                >
+                  Peruuta
+                </button>
+              </div>
+            </form>
+          )}
 
-      {showLisaaUusipage && (
-        <form className="lomake">
-          <h5>Lisää uusi ravintola</h5>
-          <div className="form-group">
-            <label>Nimi</label>
-            <input
-              type="text"
-              className="form-control"
-              value={ravintolanNimi}
-              onChange={(e) => setRavintolanNimi(e.target.value)}
-            ></input>
-            <label>Ruokatyyppi</label>
-            <input
-              type="text"
-              className="form-control"
-              value={ruokatyyppi}
-              onChange={(e) => setRuokatyyppi(e.target.value)}
-            ></input>
-            <label>Kaupunginosa</label>
-            <input
-              type="text"
-              className="form-control"
-              value={kaupunginosa}
-              onChange={(e) => setKaupunginosa(e.target.value)}
-            ></input>
-            <label>Osoite</label>
-            <input
-              type="text"
-              className="form-control"
-              value={osoite}
-              onChange={(e) => setOsoite(e.target.value)}
-            ></input>
-            <button
-              type="button"
-              className="btn btn-success"
-              onClick={() => tallennaUusiRavintola()}
-            >
-              Tallenna
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => peruutaMuokkaus()}
-            >
-              Peruuta
-            </button>
-          </div>
-        </form>
-      )}
+          {showLisaaUusipage && (
+            <form className="lomake">
+              <h5>Lisää uusi ravintola</h5>
+              <div className="form-group">
+                <label>Nimi</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={ravintolanNimi}
+                  onChange={(e) => setRavintolanNimi(e.target.value)}
+                ></input>
+                <label>Ruokatyyppi</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={ruokatyyppi}
+                  onChange={(e) => setRuokatyyppi(e.target.value)}
+                ></input>
+                <label>Kaupunginosa</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={kaupunginosa}
+                  onChange={(e) => setKaupunginosa(e.target.value)}
+                ></input>
+                <label>Osoite</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={osoite}
+                  onChange={(e) => setOsoite(e.target.value)}
+                ></input>
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={() => tallennaUusiRavintola()}
+                >
+                  Tallenna
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => peruutaMuokkaus()}
+                >
+                  Peruuta
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -476,10 +500,7 @@ const Ravintolalista = (props) => {
 
 const Lataaviesti = () => {
   const { promiseInProgress } = usePromiseTracker();
-  return (
-    promiseInProgress &&
-    <p>lataa</p>
-  )
-}
+  return promiseInProgress && <p>lataa</p>;
+};
 
 export default App;
